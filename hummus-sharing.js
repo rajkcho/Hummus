@@ -37,7 +37,7 @@
 
   function createShareBar(savings) {
     const savingsText = '$' + Math.round(savings).toLocaleString();
-    const url = encodeURIComponent('https://evcalc.io');
+    const url = encodeURIComponent('https://rajkcho.github.io/Hummus');
     const text = encodeURIComponent(`I'd save ${savingsText} per year by switching to an EV! Calculate yours:`);
 
     const div = document.createElement('div');
@@ -49,7 +49,7 @@
       <button class="evshare-btn evshare-copy" data-savings="${savingsText}">📋 Copy Link</button>
     `;
     div.querySelector('.evshare-copy').addEventListener('click', () => {
-      const shareText = `I'd save ${savingsText} per year by switching to an EV! Calculate yours: https://evcalc.io`;
+      const shareText = `I'd save ${savingsText} per year by switching to an EV! Calculate yours: https://rajkcho.github.io/Hummus`;
       navigator.clipboard.writeText(shareText).then(() => {
         showToast('✓ Copied to clipboard!');
         if (typeof EVAnalytics !== 'undefined') EVAnalytics.track('share_copy');

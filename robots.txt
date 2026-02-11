@@ -4,7 +4,7 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://evcalc.io/sitemap.xml
+Sitemap: https://rajkcho.github.io/Hummus/sitemap.xml
 
 # Prevent crawling of dev files (if any)
 Disallow: /dev/

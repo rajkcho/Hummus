@@ -16,7 +16,7 @@
             };
             
             const text = templates[calculatorType] || templates.quick;
-            const url = 'https://evcalc.io';
+            const url = 'https://rajkcho.github.io/Hummus';
             const hashtags = 'EV,ElectricVehicle,CleanEnergy';
             
             return { text, url, hashtags };
@@ -48,7 +48,7 @@
         
         // Copy link to clipboard
         copyLink: function(calculatorType) {
-            const url = 'https://evcalc.io';
+            const url = 'https://rajkcho.github.io/Hummus';
             navigator.clipboard.writeText(url).then(() => {
                 this.showToast('Link copied to clipboard! 📋');
                 this.trackShare('copy', calculatorType);
