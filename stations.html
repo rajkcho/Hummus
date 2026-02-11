@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find EV Charging Stations Near You - Free Station Locator</title>
+    <meta name="description" content="Find electric vehicle charging stations near you. Filter by network (Tesla, ChargePoint, Electrify America), connector type, and charging speed.">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #map { height: 500px; width: 100%; border-radius: 12px; margin: 2rem 0; }
+        .filters { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .filter-btn { padding: 0.5rem 1rem; border: 1px solid #ddd; border-radius: 8px; background: white; cursor: pointer; }
+        .filter-btn.active { background: #10b981; color: white; }
+        .station-list { display: grid; gap: 1rem; }
+        .station-card { background: #f8fafc; padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0; }
+        .station-card h3 { margin: 0 0 0.5rem; }
+        .station-meta { color: #64748b; font-size: 0.9rem; }
+        .connector-badge { display: inline-block; padding: 0.25rem 0.5rem; background: #dbeafe; color: #1e40af; border-radius: 4px; font-size: 0.8rem; margin-right: 0.25rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🗺️ EV Charging Station Finder</h1>
+        <p>Find charging stations near you with real-time availability (where available)</p>
+    </header>
+    
+    <main style="max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem;">
+        <div class="filters">
+            <input type="text" id="location" placeholder="Enter city or zip code" style="flex: 1; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;">
+            <button class="filter-btn" onclick="searchStations()">🔍 Search</button>
+        </div>
+        
+        <div class="filters">
+            <button class="filter-btn" data-filter="all">All Networks</button>
+            <button class="filter-btn" data-filter="tesla">Tesla Supercharger</button>
+            <button class="filter-btn" data-filter="electrify">Electrify America</button>
+            <button class="filter-btn" data-filter="chargepoint">ChargePoint</button>
+            <button class="filter-btn" data-filter="evgo">EVgo</button>
+        </div>
+        
+        <!-- Embedded Map (using Open Charge Map or similar) -->
+        <div id="map" style="background: #e5e7eb; display: flex; align-items: center; justify-content: center; color: #6b7280;">
+            <p>📍 Map loads here (integrate OpenChargeMap API or Google Maps API)</p>
+        </div>
+        
+        <!-- Station List -->
+        <div class="station-list" id="stationList">
+            <!-- Example stations (would be populated via API) -->
+            <div class="station-card">
+                <h3>Tesla Supercharger - Downtown</h3>
+                <p class="station-meta">📍 123 Main St, Burlington, ON L7R 1A1 • 2.3 km away</p>
+                <p class="station-meta">⚡ 12 stalls available • Up to 250 kW DC Fast Charging</p>
+                <div style="margin-top: 0.5rem;">
+                    <span class="connector-badge">CCS</span>
+                    <span class="connector-badge">Tesla</span>
+                </div>
+                <p style="margin-top: 0.75rem; font-size: 0.9rem;"><a href="https://www.tesla.com/findus" target="_blank">View Details →</a></p>
+            </div>
+            
+            <div class="station-card">
+                <h3>ChargePoint Station - Shopping Mall</h3>
+                <p class="station-meta">📍 456 Maple Ave, Burlington, ON L7L 5C3 • 3.1 km away</p>
+                <p class="station-meta">⚡ 4 stalls (2 available) • Level 2 Charging (7.2 kW)</p>
+                <div style="margin-top: 0.5rem;">
+                    <span class="connector-badge">J1772</span>
+                </div>
+                <p style="margin-top: 0.75rem; font-size: 0.9rem;"><a href="https://www.chargepoint.com" target="_blank">View Details →</a></p>
+            </div>
+            
+            <div class="station-card">
+                <h3>Electrify America - Highway Stop</h3>
+                <p class="station-meta">📍 789 Highway 403, Burlington, ON L7P 1B2 • 5.8 km away</p>
+                <p class="station-meta">⚡ 8 stalls available • Up to 350 kW Ultra-Fast Charging</p>
+                <div style="margin-top: 0.5rem;">
+                    <span class="connector-badge">CCS</span>
+                    <span class="connector-badge">CHAdeMO</span>
+                </div>
+                <p style="margin-top: 0.75rem; font-size: 0.9rem;"><a href="https://www.electrifyamerica.com" target="_blank">View Details →</a></p>
+            </div>
+        </div>
+        
+        <div style="background: #fef3c7; border: 1px solid #fbbf24; padding: 1.5rem; border-radius: 12px; margin-top: 2rem;">
+            <h3 style="margin: 0 0 0.5rem;">💡 Pro Tip: Plan Your Road Trip</h3>
+            <p style="margin: 0; color: #78350f;">Use <a href="https://abetterrouteplanner.com" target="_blank" style="color: #b45309; font-weight: 600;">A Better Route Planner</a> to plan long trips with charging stops. It factors in your specific EV model, charging speed, and weather conditions for accurate range estimates.</p>
+        </div>
+        
+        <p style="text-align: center; margin-top: 3rem;"><a href="/" style="font-weight: 600;">← Back to Calculators</a></p>
+    </main>
+    
+    <script>
+        // Simple filter toggle (real implementation would filter API results)
+        document.querySelectorAll('.filter-btn[data-filter]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn[data-filter]').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                console.log('Filter stations by:', filter);
+                // TODO: Implement actual filtering logic with API data
+            });
+        });
+        
+        function searchStations() {
+            const location = document.getElementById('location').value;
+            console.log('Search stations near:', location);
+            alert('Station search would trigger API call for: ' + location);
+            // TODO: Integrate with OpenChargeMap API (https://openchargemap.org/site/develop/api)
+            // Free API key required: https://openchargemap.org/site/loginprovider/register
+        }
+        
+        // TODO: Integrate real map
+        // Option 1: OpenChargeMap API (free, open-source)
+        // Option 2: Google Maps Places API (paid, but more reliable)
+        // Option 3: Embed iframe from PlugShare.com
+    </script>
+    
+    <!-- 
+    API Integration Notes:
+    
+    1. OpenChargeMap (Recommended - Free & Open)
+       Endpoint: https://api.openchargemap.io/v3/poi
+       Params: latitude, longitude, distance, maxresults
+       Docs: https://openchargemap.org/site/develop/api
+    
+    2. Google Maps Places API (Paid)
+       Search for "EV charging station" near coordinates
+       Includes reviews, photos, real-time availability
+       Cost: $17/1000 requests (after free tier)
+    
+    3. PlugShare API (Community-driven)
+       Requires partnership for API access
+       Has crowdsourced availability data
+    -->
+</body>
+</html>

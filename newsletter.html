@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe to EV Savings Tips Newsletter</title>
+</head>
+<body>
+    <div style="max-width: 500px; margin: 3rem auto; padding: 2rem; background: #f8fafc; border-radius: 16px; border: 1px solid #e2e8f0;">
+        <h2 style="margin: 0 0 1rem; text-align: center;">⚡ Get EV Savings Tips</h2>
+        <p style="text-align: center; color: #64748b; margin-bottom: 1.5rem;">Weekly insights on electric vehicle costs, incentives, and savings strategies. Free, no spam.</p>
+        
+        <form id="newsletterForm" style="display: flex; flex-direction: column; gap: 1rem;">
+            <input type="email" id="email" placeholder="Your email address" required style="padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1rem;">
+            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: #64748b;">
+                <input type="checkbox" id="consent" required>
+                <span>I agree to receive EV tips and updates</span>
+            </label>
+            <button type="submit" style="padding: 0.875rem; background: #10b981; color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer;">
+                Subscribe (It's Free!)
+            </button>
+        </form>
+        
+        <p style="text-align: center; color: #94a3b8; font-size: 0.8rem; margin-top: 1rem;">
+            We respect your privacy. Unsubscribe anytime. No spam, ever.
+        </p>
+        
+        <div id="successMessage" style="display: none; background: #d1fae5; color: #065f46; padding: 1rem; border-radius: 8px; margin-top: 1rem; text-align: center;">
+            ✅ Thanks! Check your email to confirm your subscription.
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('newsletterForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const consent = document.getElementById('consent').checked;
+            
+            if (!consent) {
+                alert('Please agree to receive updates');
+                return;
+            }
+            
+            // TODO: Integrate with email service
+            // Options:
+            // 1. Mailchimp (free up to 500 subscribers)
+            // 2. ConvertKit (free up to 1,000 subscribers)
+            // 3. Buttondown (simple, affordable)
+            // 4. Substack (built-in monetization)
+            
+            console.log('Subscribe:', email);
+            
+            // Simulated success
+            document.getElementById('newsletterForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Real implementation:
+            // fetch('https://your-backend-or-mailchimp-api.com/subscribe', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify({ email, source: 'evcalc.io' })
+            // });
+        });
+    </script>
+    
+    <!--
+    Email Service Integration:
+    
+    MAILCHIMP (Recommended for starting):
+    1. Create free account at mailchimp.com
+    2. Create audience
+    3. Use embedded form code or API
+    4. Free tier: 500 contacts, 1,000 sends/month
+    
+    CONVERTKIT (Better for creators):
+    1. Free tier: 1,000 subscribers
+    2. Simple automation & sequences
+    3. Better deliverability than Mailchimp
+    
+    Newsletter Content Ideas:
+    - Weekly: "This Week in EV" (news roundup)
+    - Monthly: "New EV Incentives" (state/federal updates)
+    - Quarterly: "EV Market Report" (sales, pricing trends)
+    - Ad-hoc: "New Calculator Feature" announcements
+    
+    Monetization:
+    - Sponsor placements ($50-200/email at 1,000+ subs)
+    - Affiliate product recommendations
+    - Premium tier ($5/mo for detailed reports)
+    -->
+</body>
+</html>

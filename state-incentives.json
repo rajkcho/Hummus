@@ -1,0 +1,137 @@
+{
+  "lastUpdated": "2026-02-11",
+  "federal": {
+    "newEV": {
+      "amount": 7500,
+      "requirements": [
+        "Battery capacity ≥ 7 kWh",
+        "Final assembly in North America",
+        "MSRP limit: $55K (sedans), $80K (SUVs/trucks)",
+        "Income limit: $150K (single), $300K (joint)",
+        "Battery component requirements (domestic content)"
+      ],
+      "source": "https://www.irs.gov/credits-deductions/individuals/plug-in-electric-drive-vehicle-credit-section-30d"
+    },
+    "usedEV": {
+      "amount": 4000,
+      "requirements": [
+        "Vehicle ≥ 2 years old",
+        "Sale price ≤ $25,000",
+        "Income limit: $75K (single), $150K (joint)",
+        "First resale only",
+        "From licensed dealer"
+      ]
+    }
+  },
+  "states": {
+    "CA": {
+      "name": "California",
+      "rebate": 7500,
+      "program": "Clean Vehicle Rebate Project (CVRP)",
+      "details": "Up to $7,500 for BEVs, income-tiered. Additional $2,500 for low-income buyers.",
+      "url": "https://cleanvehiclerebate.org"
+    },
+    "CO": {
+      "name": "Colorado",
+      "rebate": 5000,
+      "program": "Colorado EV Tax Credit",
+      "details": "$5,000 tax credit for new EVs, $2,500 for PHEVs. No income limit.",
+      "url": "https://energyoffice.colorado.gov/transportation/grants-incentives/colorado-electric-vehicle-tax-credit"
+    },
+    "CT": {
+      "name": "Connecticut",
+      "rebate": 3000,
+      "program": "CHEAPR",
+      "details": "$3,000 for BEVs, additional $1,500 for low/moderate income buyers.",
+      "url": "https://portal.ct.gov/DEEP/Air/Mobile-Sources/CHEAPR/CHEAPR---Home"
+    },
+    "DE": {
+      "name": "Delaware",
+      "rebate": 2500,
+      "program": "DE Clean Vehicle Rebate",
+      "details": "$2,500 for BEVs, $1,000 for PHEVs. First-come, first-served.",
+      "url": "https://dnrec.alpha.delaware.gov/air/clean-transportation/"
+    },
+    "MA": {
+      "name": "Massachusetts",
+      "rebate": 3500,
+      "program": "MOR-EV",
+      "details": "$3,500 for BEVs, $1,500 for PHEVs. MSRP limit $55K.",
+      "url": "https://mor-ev.org"
+    },
+    "NJ": {
+      "name": "New Jersey",
+      "rebate": 4000,
+      "program": "NJ Charge Up",
+      "details": "$4,000 for BEVs, $2,000 for PHEVs. MSRP limit $55K.",
+      "url": "https://chargeup.njcleanenergy.com"
+    },
+    "NY": {
+      "name": "New York",
+      "rebate": 2000,
+      "program": "Drive Clean Rebate",
+      "details": "$2,000 for BEVs, $500-1,000 for PHEVs. MSRP limit $42K (most vehicles).",
+      "url": "https://truck-vip.ny.gov/drive-clean-rebate"
+    },
+    "OR": {
+      "name": "Oregon",
+      "rebate": 2500,
+      "program": "Oregon Standard Rebate",
+      "details": "$2,500 for BEVs (up to $7,500 for low-income). Charge Ahead Program.",
+      "url": "https://www.oregon.gov/deq/aq/programs/pages/zev-rebate.aspx"
+    },
+    "PA": {
+      "name": "Pennsylvania",
+      "rebate": 2000,
+      "program": "PA DEP Alternative Fuel Vehicle Rebate",
+      "details": "$2,000 for BEVs, $1,000 for PHEVs. Available to individuals and businesses.",
+      "url": "https://www.dep.pa.gov/citizens/grantsloanrebates/alternative-fuels-incentive-grant/pages/alternative-fuel-vehicle-rebate.aspx"
+    },
+    "VT": {
+      "name": "Vermont",
+      "rebate": 4000,
+      "program": "Incentive for New PEVs (MileageSmart)",
+      "details": "$4,000 for BEVs, $2,000 for PHEVs. Income-based incentives up to $5,500.",
+      "url": "https://drive.electric/incentives/"
+    },
+    "WA": {
+      "name": "Washington",
+      "rebate": 0,
+      "program": "Sales Tax Exemption",
+      "details": "Up to $16,000 sales tax exemption for EVs <$45K. Expired 7/31/2025; may be renewed.",
+      "url": "https://dor.wa.gov/taxes-rates/retail-sales-tax/electric-vehicle-tax"
+    },
+    "TX": {
+      "name": "Texas",
+      "rebate": 0,
+      "program": "None (statewide)",
+      "details": "Some local utility rebates available (Austin Energy, CPS Energy). No state program.",
+      "url": "https://afdc.energy.gov/laws/state_summary?state=TX"
+    },
+    "FL": {
+      "name": "Florida",
+      "rebate": 0,
+      "program": "None (statewide)",
+      "details": "Some local utility rebates (Duke Energy, FPL). No state program.",
+      "url": "https://afdc.energy.gov/laws/state_summary?state=FL"
+    },
+    "IL": {
+      "name": "Illinois",
+      "rebate": 4000,
+      "program": "Illinois EV Rebate",
+      "details": "$4,000 for BEVs, $2,000 for PHEVs. MSRP limit $55K. Income limits apply.",
+      "url": "https://www2.illinois.gov/epa/topics/ceja/Pages/Electric-Vehicle-Rebates.aspx"
+    }
+  },
+  "utilityRebates": [
+    "Many electric utilities offer additional rebates for home charger installation ($250-$1,000)",
+    "Examples: PG&E (CA), SCE (CA), Con Edison (NY), Xcel Energy (CO, MN)",
+    "Check with your local utility for time-of-use (TOU) rates that lower EV charging costs"
+  ],
+  "notes": [
+    "Incentives change frequently. Verify current amounts before purchasing.",
+    "Some states have waitlists or funding limits (first-come, first-served).",
+    "Federal and state incentives can stack for up to $15,000+ total savings.",
+    "Consult AFDC (Alternative Fuels Data Center) for the most up-to-date info: https://afdc.energy.gov/laws/state"
+  ]
+}

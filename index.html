@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVCalc - Electric Vehicle Cost Calculator | Free EV vs Gas Comparison Tools</title>
+    <meta name="description" content="Free EV calculators: charging costs, total ownership comparison, and ROI analysis. See exactly how much you'll save switching to electric. Used by 50,000+ EV shoppers.">
+    <meta name="keywords" content="ev calculator, electric vehicle savings, charging cost calculator, ev vs gas, home charging roi, electric car cost comparison">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://evcalc.io/">
+    <meta property="og:title" content="EVCalc - See Your Electric Vehicle Savings">
+    <meta property="og:description" content="Calculate charging costs, compare EV vs gas, and find your perfect electric vehicle. Free tools, real savings.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=1200&h=630&fit=crop">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="EVCalc - Electric Vehicle Cost Calculator">
+    <meta property="twitter:description" content="Free EV calculators for charging costs and total ownership comparison">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#10b981">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "EVCalc - Electric Vehicle Calculator",
+        "url": "https://evcalc.io",
+        "applicationCategory": "FinanceApplication",
+        "description": "Free EV calculators for charging costs, total ownership comparison, and savings analysis.",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "operatingSystem": "Any"
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --primary-light: #d1fae5;
+            --secondary: #3b82f6;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            --radius: 16px;
+            --max-width: 1200px;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f172a;
+                --bg-alt: #1e293b;
+                --text: #f1f5f9;
+                --text-muted: #94a3b8;
+                --border: #334155;
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Header */
+        header {
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            padding: 1.25rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            header {
+                background: rgba(15, 23, 42, 0.8);
+            }
+        }
+        
+        nav {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            line-height: 1;
+        }
+        
+        .theme-toggle {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 1.25rem;
+            transition: transform 0.2s;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Hero */
+        .hero {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.125rem;
+            box-shadow: var(--shadow-lg);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.25);
+        }
+        
+        /* Stats */
+        .stats {
+            max-width: var(--max-width);
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-alt);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            display: block;
+        }
+        
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Calculators Section */
+        .calculators {
+            max-width: var(--max-width);
+            margin: 4rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+        }
+        
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.125rem;
+        }
+        
+        .calculator-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--bg-alt);
+            border-top: 1px solid var(--border);
+            margin-top: 6rem;
+            padding: 3rem 1.5rem 2rem;
+        }
+        
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            max-width: var(--max-width);
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+        
+        .affiliate-disclosure {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            color: var(--text);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2rem 1.5rem;
+            }
+            
+            .stats {
+                gap: 1rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">
+                <span class="logo-icon">⚡</span>
+                <span>EVCalc</span>
+            </a>
+            <div style="display:flex;gap:1.5rem;align-items:center;">
+                <a href="#calculators" style="color:var(--text-muted);text-decoration:none;font-weight:500;font-size:.9rem;">Calculators</a>
+                <a href="#compare" style="color:var(--text-muted);text-decoration:none;font-weight:500;font-size:.9rem;">Compare EVs</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <span id="themeIcon">🌙</span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Make the Switch to Electric—<br>See Your Savings</h1>
+            <p>Calculate charging costs, compare total ownership, and make smart EV decisions with beautiful, data-driven tools. 100% free.</p>
+            <a href="#calculators" class="cta-btn">
+                <span>Calculate My Savings</span>
+                <span>⚡</span>
+            </a>
+        </section>
+
+        <section class="stats">
+            <div class="stat-card animate-in">
+                <span class="stat-value">$1,200</span>
+                <p class="stat-label">Average Annual Fuel Savings</p>
+            </div>
+            <div class="stat-card animate-in" style="animation-delay: 0.1s">
+                <span class="stat-value">2-3 yrs</span>
+                <p class="stat-label">Typical Charger Payback Period</p>
+            </div>
+            <div class="stat-card animate-in" style="animation-delay: 0.2s">
+                <span class="stat-value">$10K+</span>
+                <p class="stat-label">5-Year TCO Savings (EV vs Gas)</p>
+            </div>
+        </section>
+
+        <section class="calculators" id="calculators">
+            <div class="section-header">
+                <h2>Free EV Calculators</h2>
+                <p>Three powerful tools to help you make informed electric vehicle decisions</p>
+            </div>
+
+            <div class="calculator-grid">
+                <div id="roi-calculator"></div>
+                <div id="tco-calculator"></div>
+                <div id="quick-calculator"></div>
+            </div>
+        </section>
+
+        <section class="calculators" id="compare">
+            <div id="ev-comparison"></div>
+        </section>
+
+        <section class="calculators">
+            <div class="affiliate-disclosure">
+                <strong>📢 Affiliate Disclosure:</strong> EVCalc.io is a participant in the Amazon Services LLC Associates Program. We earn from qualifying purchases through product links. This doesn't affect your price—it helps us keep these calculators free. All recommendations are based on user reviews and specifications.
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About EVCalc</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">
+                    Free, accurate EV cost calculators to help you make smart electric vehicle decisions. Built with data from EPA, DOE, and real-world testing.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://fueleconomy.gov" target="_blank">EPA Fuel Economy</a></li>
+                    <li><a href="https://evadoption.com" target="_blank">EV Adoption Data</a></li>
+                    <li><a href="https://www.irs.gov/credits-deductions/individuals/plug-in-electric-drive-vehicle-credit-section-30d" target="_blank">Federal Tax Credits (IRS)</a></li>
+                    <li><a href="https://afdc.energy.gov/laws/state" target="_blank">State EV Incentives</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Use</a></li>
+                    <li><a href="#affiliate">Affiliate Disclosure</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 EVCalc.io | Built with ⚡ by Rick | Data updated February 2026</p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem;">Disclaimer: Calculations are estimates based on typical values. Actual costs may vary. Consult with dealers and utilities for precise figures.</p>
+        </div>
+    </footer>
+
+    <!-- Load modules -->
+    <script src="hummus-data.js"></script>
+    <script src="hummus-analytics.js"></script>
+    <script src="hummus-calculators.js"></script>
+    <script src="hummus-comparison.js"></script>
+    <script src="hummus-sharing.js"></script>
+    <script src="hummus-microinteractions.js"></script>
+    
+    <!-- Initialize everything -->
+    <script>
+        // Initialize all calculators
+        EVCalc.initAll('#roi-calculator', '#tco-calculator', '#quick-calculator');
+        
+        // Initialize comparison tool
+        EVComparison.init('#ev-comparison');
+        
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const htmlEl = document.documentElement;
+        
+        // Check system preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const storedTheme = localStorage.getItem('theme');
+        
+        if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+            htmlEl.classList.add('dark-mode');
+            themeIcon.textContent = '☀️';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            htmlEl.classList.toggle('dark-mode');
+            const isDark = htmlEl.classList.contains('dark-mode');
+            themeIcon.textContent = isDark ? '☀️' : '🌙';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+        
+        // Smooth scroll for CTA
+        document.querySelector('.cta-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('calculators').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Animate stats on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.animate-in').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+    </script>
+    
+    <!-- Google Analytics (placeholder - add your GA4 ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX'); // Replace with actual GA4 ID
+    </script>
+</body>
+</html>

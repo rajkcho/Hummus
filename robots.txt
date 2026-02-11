@@ -1,0 +1,19 @@
+# EVCalc.io - robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://evcalc.io/sitemap.xml
+
+# Prevent crawling of dev files (if any)
+Disallow: /dev/
+Disallow: /*.json$
+
+# Allow all calculators and content
+Allow: /index.html
+Allow: /calculators/
+Allow: /blog/
+
+# Crawl-delay for bots (optional - prevents server overload)
+Crawl-delay: 1
